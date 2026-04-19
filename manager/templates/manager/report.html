@@ -1,0 +1,31 @@
+{% extends "manager/base.html" %}
+
+{% block title %}Estatísticas - DevBox Manager{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h2>Estatísticas do Seu Conhecimento</h2>
+    <p class="text-muted">Visão geral da quantidade de itens que você tem salvo.</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6 mb-4">
+        <div class="card bg-primary text-white h-100 text-center py-4">
+            <div class="card-body">
+                <i class="bi bi-folder h1 display-4 mb-3 d-block"></i>
+                <h5 class="card-title">Total de Projetos</h5>
+                <h1 class="display-3 fw-bold">{{ total_projects }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card bg-success text-white h-100 text-center py-4">
+            <div class="card-body">
+                <i class="bi bi-file-earmark-code h1 display-4 mb-3 d-block"></i>
+                <h5 class="card-title">Total de Caixinhas Listadas</h5>
+                <h1 class="display-3 fw-bold">{{ total_contents }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

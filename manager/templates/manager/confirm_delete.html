@@ -1,0 +1,25 @@
+{% extends "manager/base.html" %}
+
+{% block title %}Confirmar Exclusão - DevBox Manager{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0"><i class="bi bi-exclamation-triangle-fill"></i> Confirmar Exclusão</h4>
+            </div>
+            <div class="card-body text-center py-5">
+                <h5>Você tem certeza que deseja excluir "{{ object.title }}"?</h5>
+                <p class="text-muted">Atenção: Esta ação não pode ser desfeita e todos os dados associados a este item serão apagados para sempre.</p>
+                
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <a href="{% if back_url == 'dashboard' %}{% url 'dashboard' %}{% else %}{{ back_url }}{% endif %}" class="btn btn-secondary me-2">Cancelar e Voltar</a>
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Sim, Excluir Definitivamente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

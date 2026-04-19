@@ -1,0 +1,31 @@
+{% extends "manager/base.html" %}
+
+{% block title %}{{ contentbox.title }} - DevBox Manager{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <a href="{% url 'project_detail' contentbox.project.pk %}" class="text-decoration-none"><i class="bi bi-arrow-left"></i> Voltar para {{ contentbox.project.title }}</a>
+</div>
+
+<div class="card">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+        <div>
+            <h3 class="mb-0">{{ contentbox.title }}</h3>
+            <p class="text-muted mb-0 small">Criado em: {{ contentbox.created_at|date:"d/m/Y H:i" }}</p>
+        </div>
+        <div>
+            <a href="{% url 'contentbox_edit' contentbox.pk %}" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i> Editar</a>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if contentbox.short_description %}
+        <p class="lead">{{ contentbox.short_description }}</p>
+        <hr>
+        {% endif %}
+        
+        <h5 class="mb-3">Conteúdo:</h5>
+        <!-- The snippet box class will give it a code block / dark terminal appearance -->
+        <div class="snippet-box">{{ contentbox.content }}</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "manager/base.html" %}
+
+{% block title %}Projeto: {{ project.title }} - DevBox Manager{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-arrow-left"></i> Voltar aos Projetos</a>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+    <div>
+        <h2>{{ project.title }}</h2>
+        <p class="text-muted">{{ project.description }}</p>
+    </div>
+    <a href="{% url 'contentbox_create' project.pk %}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Nova Caixinha</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for box in content_boxes %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ box.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ box.short_description }}</h6>
+                <p class="text-muted small">Criado em: {{ box.created_at|date:"d/m/Y H:i" }}</p>
+            </div>
+            <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                <a href="{% url 'contentbox_detail' box.pk %}" class="btn btn-outline-primary btn-sm">Ver Conteúdo Completo</a>
+                <div class="btn-group">
+                    <a href="{% url 'contentbox_edit' box.pk %}" class="btn btn-outline-secondary btn-sm" title="Editar"><i class="bi bi-pencil"></i></a>
+                    <a href="{% url 'contentbox_delete' box.pk %}" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="bi bi-trash"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <h4 class="text-muted">Nenhuma caixinha neste projeto ainda.</h4>
+        <p>Adicione trechos de código, anotações ou comandos importantes aqui.</p>
+        <a href="{% url 'contentbox_create' project.pk %}" class="btn btn-success mt-3"><i class="bi bi-plus-lg"></i> Criar Primeira Caixinha</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
